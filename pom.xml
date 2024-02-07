@@ -35,9 +35,9 @@
     </licenses>
     <!-- 仓库信息 -->
     <scm>
-        <connection>scm:git@github.com:bootystar/common.git</connection>
-        <developerConnection>scm:git@github.com:bootystar/common.git</developerConnection>
-        <url>https://github.com/bootystar/common</url>
+        <connection>scm:git@github.com:bootystar/booty-spring-boot-starter.git</connection>
+        <developerConnection>scm:git@github.com:bootystar/booty-spring-boot-starter.git</developerConnection>
+        <url>https://github.com/bootystar/booty-spring-boot-starter</url>
     </scm>
     <!-- 开发人员信息 -->
     <developers>
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.3</version>
+            <version>3.5.5</version>
             <optional>true</optional>
         </dependency>
     </dependencies>
