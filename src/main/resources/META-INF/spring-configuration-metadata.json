@@ -1,0 +1,49 @@
+{
+  "properties": [
+
+    {
+      "name": "booty.minio.enable",
+      "type": "java.lang.Boolean",
+      "defaultValue": "false",
+      "description": "enable auto create EnhancedMinioClient"
+    },
+    {
+      "name": "booty.minio.endpoint",
+      "type": "java.lang.String",
+      "defaultValue": "localhost:9000"
+    },
+    {
+      "name": "booty.minio.accessKey",
+      "type": "java.lang.String",
+      "defaultValue": "minioadmin"
+    },
+    {
+      "name": "booty.minio.secretKey",
+      "type": "java.lang.String",
+      "defaultValue": "minioadmin"
+    },
+    {
+      "name": "booty.minio.bucketName",
+      "type": "java.lang.String"
+    }
+  ],
+  "hints": [
+    {
+      "name": "booty.minio.enable",
+      "values": [
+        {
+          "value": "true"
+        },
+        {
+          "value": "false"
+        }
+      ]
+//      ,
+//      "providers": [
+//        {
+//          "name": "any"
+//        }
+//      ]
+    }
+  ]
+}
