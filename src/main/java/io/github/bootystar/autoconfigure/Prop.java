@@ -3,12 +3,10 @@ package io.github.bootystar.autoconfigure;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @Data
 @Accessors(chain = true)
 @ConfigurationProperties(prefix = "booty")
-@EnableConfigurationProperties({Prop.class})
 public class Prop {
     private Minio minio;
     @Data

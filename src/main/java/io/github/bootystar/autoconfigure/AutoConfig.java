@@ -18,6 +18,9 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
+import io.github.bootystar.autoconfigure.databind.converter.String2LocalDateConverter;
+import io.github.bootystar.autoconfigure.databind.converter.String2LocalDateTimeConverter;
+import io.github.bootystar.autoconfigure.databind.converter.String2LocalTimeConverter;
 import io.github.bootystar.autoconfigure.easyexcel.EasyExcelInitializer;
 import io.github.bootystar.helper.easyexcel.EasyExcelConverterHelper;
 import io.github.bootystar.helper.minio.client.MinioEnhancedClient;
@@ -79,6 +82,21 @@ public class AutoConfig {
 
         converter.setObjectMapper(objectMapper);
         return converter;
+    }
+
+    @Bean
+    public String2LocalDateTimeConverter string2LocalDateTimeConverter() {
+        return new String2LocalDateTimeConverter();
+    }
+
+    @Bean
+    public String2LocalDateConverter string2LocalDateConverter() {
+        return new String2LocalDateConverter();
+    }
+
+    @Bean
+    public String2LocalTimeConverter string2LocalTimeConverter() {
+        return new String2LocalTimeConverter();
     }
 
 

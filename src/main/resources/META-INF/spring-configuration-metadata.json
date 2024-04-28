@@ -10,7 +10,7 @@
     {
       "name": "booty.minio.endpoint",
       "type": "java.lang.String",
-      "defaultValue": "localhost:9000"
+      "defaultValue": "127.0.0.1:9000"
     },
     {
       "name": "booty.minio.accessKey",

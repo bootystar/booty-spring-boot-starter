@@ -4,7 +4,8 @@
 #  io.github.bootystar.autoconfigure.easyexcel.EasyExcelInitializer,\
 #  io.github.bootystar.autoconfigure.Prop,\
 #  io.github.bootystar.autoconfigure.minio.MinioAutoConfig
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.bootystar.autoconfigure.AutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  io.github.bootystar.autoconfigure.AutoConfig
 
 
 
