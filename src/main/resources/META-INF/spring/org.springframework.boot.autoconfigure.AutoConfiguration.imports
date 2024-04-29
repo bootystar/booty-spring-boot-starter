@@ -3,4 +3,4 @@
 #io.github.bootystar.autoconfigure.easyexcel.EasyExcelInitializer
 #io.github.bootystar.autoconfigure.minio.MinioAutoConfig
 #io.github.bootystar.autoconfigure.Prop
-io.github.bootystar.autoconfigure.AutoConfig
+io.github.bootystar.autoconfigure.InitializingCustomConfig

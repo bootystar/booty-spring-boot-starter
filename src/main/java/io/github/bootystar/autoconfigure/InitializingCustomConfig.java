@@ -21,18 +21,21 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import io.github.bootystar.autoconfigure.databind.converter.String2LocalDateConverter;
 import io.github.bootystar.autoconfigure.databind.converter.String2LocalDateTimeConverter;
 import io.github.bootystar.autoconfigure.databind.converter.String2LocalTimeConverter;
-import io.github.bootystar.autoconfigure.easyexcel.EasyExcelInitializer;
+import io.github.bootystar.autoconfigure.prop.EasyExcelProp;
+import io.github.bootystar.autoconfigure.prop.MinioProp;
 import io.github.bootystar.helper.easyexcel.EasyExcelConverterHelper;
 import io.github.bootystar.helper.minio.client.MinioEnhancedClient;
 import io.minio.MinioClient;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -40,8 +43,10 @@ import java.util.TimeZone;
 import static io.github.bootystar.autoconfigure.databind.constant.DateConst.*;
 
 @Configuration(proxyBeanMethods = false)
-@Import(Prop.class)
-public class AutoConfig {
+@Import({EasyExcelProp.class, MinioProp.class})
+@Slf4j
+@EnableConfigurationProperties({EasyExcelProp.class, MinioProp.class})
+public class InitializingCustomConfig implements InitializingBean {
 
     @Bean
     @ConditionalOnMissingBean(MappingJackson2HttpMessageConverter.class)
@@ -120,22 +125,30 @@ public class AutoConfig {
 
     @Bean
     @ConditionalOnClass({EasyExcelConverterHelper.class, DefaultConverterLoader.class})
-    public EasyExcelInitializer easyExcelAutoConfig() {
-        return new EasyExcelInitializer();
+    public EasyExcelConverterHelper easyExcelAutoConfig(EasyExcelProp easyExcelProp) {
+        if(!easyExcelProp.getEnhancedConverter()){
+            return null;
+        }
+        EasyExcelConverterHelper.init();
+        return null;
     }
 
     @Bean
     @ConditionalOnMissingBean(MinioEnhancedClient.class)
     @ConditionalOnClass(MinioClient.class)
-    public MinioEnhancedClient minioEnhancedClient(Prop prop) {
-        Prop.Minio minio = prop.getMinio();
-        MinioClient build = MinioClient.builder().endpoint(minio.getEndpoint())
-                .credentials(minio.getAccessKey(), minio.getSecretKey())
+    public MinioEnhancedClient minioEnhancedClient(MinioProp minioProp ) {
+        Boolean enable = minioProp.getEnable();
+        if(!enable){
+            return null;
+        }
+        MinioClient build = MinioClient.builder().endpoint(minioProp.getEndpoint())
+                .credentials(minioProp.getAccessKey(), minioProp.getSecretKey())
                 .build();
-        return new MinioEnhancedClient(build, minio.getBucketName());
+        return new MinioEnhancedClient(build, minioProp.getBucketName());
     }
 
-
-
-
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        log.debug("booty-spring-starter initialize completed");
+    }
 }

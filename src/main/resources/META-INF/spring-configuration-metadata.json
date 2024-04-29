@@ -25,25 +25,12 @@
     {
       "name": "booty.minio.bucketName",
       "type": "java.lang.String"
-    }
-  ],
-  "hints": [
+    },
     {
-      "name": "booty.minio.enable",
-      "values": [
-        {
-          "value": "true"
-        },
-        {
-          "value": "false"
-        }
-      ]
-//      ,
-//      "providers": [
-//        {
-//          "name": "any"
-//        }
-//      ]
+      "name": "booty.easy-excel.enhanced-converter",
+      "defaultValue": "true",
+      "type": "java.lang.Boolean",
+      "description": "add extra converter to EasyExcel"
     }
   ]
 }
