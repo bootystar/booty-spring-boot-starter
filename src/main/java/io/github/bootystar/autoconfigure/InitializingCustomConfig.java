@@ -42,9 +42,8 @@ import java.time.LocalTime;
 import java.util.TimeZone;
 import static io.github.bootystar.autoconfigure.databind.constant.DateConst.*;
 
-@Configuration(proxyBeanMethods = false)
-@Import({EasyExcelProp.class, MinioProp.class})
 @Slf4j
+@Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({EasyExcelProp.class, MinioProp.class})
 public class InitializingCustomConfig implements InitializingBean {
 
