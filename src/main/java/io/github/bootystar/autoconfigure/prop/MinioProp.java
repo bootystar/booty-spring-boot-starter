@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 public class MinioProp {
     private Boolean enable = false;
-    private String endpoint = "localhost:9000";
+    private String endpoint = "127.0.0.1:9000";
     private String accessKey = "minioadmin";
     private String secretKey = "minioadmin";
     private String bucketName ;
